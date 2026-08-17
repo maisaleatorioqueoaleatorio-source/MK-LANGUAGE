@@ -1,0 +1,85 @@
+===================================================================
+ GUIA COMPLETO DE TAGS HTML E TAGS PERSONALIZADAS (CUSTOM TAGS)
+===================================================================
+
+1. O QUE SÃO TAGS NO HTML?
+-------------------------------------------------------------------
+No HTML, as "tags" funcionam como peças de LEGO. Cada tag dá um 
+formato e uma função diferente para o texto, botão ou elemento 
+na tela do seu navegador.
+
+
+2. LISTA DAS PRINCIPAIS TAGS E SUAS FUNÇÕES
+-------------------------------------------------------------------
+- <html>
+  Avisa o navegador: "Aqui começa a página!". Guarda todo o código.
+
+- <head>
+  Guarda configurações invisíveis (ex: título da aba do navegador).
+
+- <body>
+  Guarda TUDO que aparece visível na tela (botões, textos, imagens).
+
+- <h1> até <h6>
+  Cria Títulos. O <h1> é o maior título e o <h6> é o menor.
+  Exemplo: <h1>Meu Título</h1>
+
+- <p>
+  Cria Parágrafos de texto comum.
+  Exemplo: <p>Este é um texto simples.</p>
+
+- <button>
+  Cria um Botão clicável.
+  Exemplo: <button>Clique Aqui</button>
+
+- <input>
+  Cria uma Caixa de Texto para o usuário digitar algo.
+  Exemplo: <input type="text" placeholder="Digite aqui...">
+
+- <div>
+  Cria uma Caixa/Bloco invisível para organizar outros elementos.
+
+- <script>
+  Onde a MÁGICA acontece! Guarda o código JavaScript que faz a 
+  sua linguagem funcionar.
+
+- <style>
+  Guarda o CSS (estilo visual, como cores de fundo, fontes e tamanhos).
+
+
+3. COMO CRIAR TAGS PERSONALIZADAS (CUSTOM ELEMENTS)
+-------------------------------------------------------------------
+Você pode inventar suas próprias tags usando JavaScript!
+Regra principal do navegador: O NOME DA TAG PRECISA TER UM HÍFEN (-).
+
+Passo 1: Escreva a sua tag no HTML
+<meu-alerta></meu-alerta>
+
+Passo 2: Ensine o navegador a entender a sua tag no JavaScript:
+<script>
+  // 1. Cria a lógica da tag
+  class MeuAlerta extends HTMLElement {
+      connectedCallback() {
+          this.innerHTML = "<button onclick='alert("Olá!")'>Clique em mim!</button>";
+      }
+  }
+
+  // 2. Registra a tag no navegador
+  customElements.define('meu-alerta', MeuAlerta);
+</script>
+
+
+4. MÉTODO BÔNUS: TRADUTOR DE TAGS PARA A SUA LINGUAGEM
+-------------------------------------------------------------------
+Se quiser criar tags sem hífen para a sua própria linguagem (ex: <falar>),
+você pode usar o JavaScript para substituir o texto por HTML normal:
+
+<script>
+  let codigo = "<falar>Olá Mundo!</falar>";
+  
+  // Troca <falar>Texto</falar> por <h1>Texto</h1>
+  let resultado = codigo.replace(/<falar>(.*?)<\/falar>/g, "<h1>$1</h1>");
+  
+  document.body.innerHTML = resultado;
+</script>
+===================================================================
